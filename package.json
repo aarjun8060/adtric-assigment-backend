@@ -1,7 +1,7 @@
 {
-  "name": "school-news-admissions-api",
+  "name": "manthan-school-api",
   "version": "1.0.0",
-  "description": "Express API for school News & Events and Admission Enquiries",
+  "description": "REST API for The Manthan School news, events, administration, and admission enquiries",
   "type": "module",
   "main": "src/index.js",
   "scripts": {

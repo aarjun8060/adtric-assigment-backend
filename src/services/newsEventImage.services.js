@@ -46,6 +46,12 @@ export const saveNewsEventImage = async (file) => {
     throw new Error("Image content does not match its declared type");
   }
 
+  // Vercel functions have an ephemeral, read-only application filesystem.
+  // Keep small admin uploads with the news document so CRUD works there too.
+  if (process.env.VERCEL === "1") {
+    return `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;
+  }
+
   const filename = `${randomUUID()}.${imageTypes[file.mimetype].extension}`;
   await mkdir(uploadDirectory, { recursive: true });
   await writeFile(path.join(uploadDirectory, filename), file.buffer, { flag: "wx" });
